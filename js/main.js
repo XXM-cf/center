@@ -37,9 +37,13 @@ function sendCMD(data,cmdId){
     appSendMsgTpl.params.data.raw = UARTDATA2.encode(data,protocolTemplete,cmdId,getMsgId());
     console.log(appSendMsgTpl)
     Hekr.send(appSendMsgTpl,devTid,function(respond,error){
-      $.hekrToast(false);
+        console.log(respond, error)
         if (error) {
             console.log("error:" + JSON.stringify(error));
+            return;
+        }
+        if (Number(respond.code) === 1400018) {
+            $.hekrToast("设备离线,请稍后重试");
             return;
         }
         if (!respond.params.data.raw) {
@@ -47,6 +51,7 @@ function sendCMD(data,cmdId){
             console.log("错误response");
             return;
         }
+        $.hekrToast(false);
         setState(respond.params.data.raw);
     })
 }
@@ -78,7 +83,7 @@ document.addEventListener('HekrSDKReady', function() {
         sendCMD({},0);
       },30000);
     })
-    
+
     if(typeof(Hekr)!=="undefined"){
         var filter = {
             "action" : "devSend",
@@ -88,6 +93,7 @@ document.addEventListener('HekrSDKReady', function() {
         };
         /*被动接收*/
         Hekr.recv(filter,function(msg){//暂不过滤
+            console.log(msg)
             setState(msg.params.data.raw);
         });
     }else{
@@ -106,7 +112,7 @@ function getUrlParam(name) {
 /*
  * 重用脚本结束
  *---------------------------------------------------------------------------------------------*/
- 
+
 /*退出*/
 $(".hekr-header-back").on("touchend", function() {
     window.close();
@@ -176,7 +182,7 @@ $('#range1').hekrRangeSlider({
   updateContext: this
 });
 var instanceRangeSlider1 = $('#range1').data("hekrRangeSlider");
-  
+
 /*档位*/
 $("#gears").hekrSlotSelector({
   ratios: [1],
@@ -201,7 +207,7 @@ function gears(data){
     if(oldValue != data.value) {
         $.hekrToast(true, "消息正在发送中...", 6000, true);
         switch(data.value){
-        case 1: 
+        case 1:
             sendCMD({AirFlow:1},3);
             break;
         case 2:
@@ -209,12 +215,12 @@ function gears(data){
             break;
         }
         // 设置超时
-        $("#gears").data("timeout", setTimeout(function() {
-            // 返回原来的温度
-            $("#gears").data("hekrSlotSelector").update({value: oldValue});
-            // 提示超时
-            $.hekrToast("响应超时~请稍后重试");
-        }, 5000));
+        // $("#gears").data("timeout", setTimeout(function() {
+        //     // 返回原来的温度
+        //     $("#gears").data("hekrSlotSelector").update({value: oldValue});
+        //     // 提示超时
+        //     $.hekrToast("响应超时~请稍后重试");
+        // }, 100));
     }
 }
 /*滑条*/
@@ -228,12 +234,12 @@ function range(id,data){
         $.hekrToast(true, "消息正在发送中...", 6000, true);
         sendCMD({HumiditySetting:data.value},5);
         // 设置超时
-        $(id).data("timeout", setTimeout(function() {
-            // 返回原来的温度
-            $(id).data("hekrRangeSlider").update({value: oldValue});
-            // 提示超时
-            $.hekrToast("响应超时~请稍后重试");
-        }, 5000));
+        // $(id).data("timeout", setTimeout(function() {
+        //     // 返回原来的温度
+        //     $(id).data("hekrRangeSlider").update({value: oldValue});
+        //     // 提示超时
+        //     $.hekrToast("响应超时~请稍后重试");
+        // }, 5000));
     }
 }
 
@@ -248,10 +254,10 @@ function power(){
       sendCMD({Power:1},2);
     }
     // 设置超时
-    $this.data("timeout", setTimeout(function() {
-      // 提示超时
-      $.hekrToast("响应超时~请稍后重试");
-    }, 5000));
+    // $this.data("timeout", setTimeout(function() {
+    //   // 提示超时
+    //   $.hekrToast("响应超时~请稍后重试");
+    // }, 5000));
 }
 /*滤网*/
 function anion(){
@@ -263,10 +269,10 @@ function anion(){
       sendCMD({FilterWash:1},4);
     }
     // 设置超时
-    $this.data("timeout", setTimeout(function() {
-      // 提示超时
-      $.hekrToast("响应超时~请稍后重试");
-    }, 5000));
+    // $this.data("timeout", setTimeout(function() {
+    //   // 提示超时
+    //   $.hekrToast("响应超时~请稍后重试");
+    // }, 5000));
 }
 
 function ON(){
@@ -307,7 +313,7 @@ function setState(data){
   console.log(data);
   /*开关*/
   if(data.cmdId===1 || data.cmdId === 2){
-    clearTimeout($('#power').data("timeout"));
+    // clearTimeout($('#power').data("timeout"));
     if(data.Power === 1){
       $("#power").addClass('hekr-btn-on');
       $('.item-first .label span').removeClass('off');
@@ -322,10 +328,10 @@ function setState(data){
       OFF();
     }
   }
-  
+
   /*湿度设置*/
   if(data.cmdId===1 || data.cmdId === 5){
-    clearTimeout($('#range1').data("timeout"));
+    // clearTimeout($('#range1').data("timeout"));
     if(data.HumiditySetting == 0){}else if(data.HumiditySetting <= 10){
         instanceRangeSlider1.update({value:10});
     }else if(data.HumiditySetting >= 95){
@@ -337,7 +343,7 @@ function setState(data){
 
     /*滤网开关*/
     if(data.cmdId===1 || data.cmdId === 4){
-        clearTimeout($('#anion').data("timeout"));
+        // clearTimeout($('#anion').data("timeout"));
         if(data.FilterWash == 1){
             $('#anion').addClass('hekr-btn-on');
             $('.cleansing span').text('已启用');
@@ -346,17 +352,17 @@ function setState(data){
             $('.cleansing span').text('待机中');
         }
     }
-    
+
     /*风速*/
     if(data.cmdId===1 || data.cmdId === 3){
-        clearTimeout($("#gears").data("timeout"));
+        // clearTimeout($("#gears").data("timeout"));
         if(data.AirFlow == 1){
             instanceGears.update({value: 1});
         }else if(data.AirFlow == 2){
             instanceGears.update({value: 2});
         }
     }
-    
+
     if(data.cmdId === 1){
         /*当前温度*/
         if(data.CurrTemp <= 0){
@@ -792,7 +798,7 @@ function analyzeTimingData(data){
       ret[i].main = {};
       if(executecode.indexOf(timerOn) > -1){
           ret[i].main.values = [1];
-          ret[i].main.alias = '开';      
+          ret[i].main.alias = '开';
       }else if(executecode.indexOf(timerOff) > -1){
           ret[i].main.values = [2];
           ret[i].main.alias = '关';
@@ -890,7 +896,7 @@ function showTime(executeTime,executecode){
   var text = '暂无执行任务';
   var now = (new Date()).getTime();
   var date = new Date();
-  var nowDayOfWeek = date.getDay(); //今天本周的第几天  
+  var nowDayOfWeek = date.getDay(); //今天本周的第几天
   nDate = new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate(),date.getHours(),date.getMinutes(),date.getSeconds()));
   var n = nDate.getTime()/1000 - 8*60*60;
   nowDayOfWeek = nowDayOfWeek==0?7:nowDayOfWeek;
@@ -907,11 +913,11 @@ function showTime(executeTime,executecode){
       switches = '关';
     }
     var next = new Date(executeTime);
-    var nextDayOfWeek = next.getDay(); //下周周的第几天  
+    var nextDayOfWeek = next.getDay(); //下周周的第几天
     nextDayOfWeek = nextDayOfWeek==0?7:nextDayOfWeek;
     if(nextDayOfWeek<=nowDayOfWeek && hours>24){
         switch(nextDayOfWeek){
-          case 1: 
+          case 1:
               text = '下周一 ' + switches;
               break;
           case 2:
@@ -967,11 +973,12 @@ function connect(type,url,dataSet,source,instance,index){
         },
         error:function(XMLHttpRequest, textStatus, errorThrow){
             if($timerID.is(':visible')) {
-                if (textStatus == "timeout") {
-                    $.hekrToast("响应超时，请稍后重试");
-                } else {
-                    $.hekrToast("操作出现错误，请稍后重试");
-                }
+                $.hekrToast("操作出现错误，请稍后重试");
+                // if (textStatus == "timeout") {
+                //     $.hekrToast("响应超时，请稍后重试");
+                // } else {
+                //     $.hekrToast("操作出现错误，请稍后重试");
+                // }
             }
         }
     });
@@ -982,7 +989,7 @@ CronExpr = {
   /**
    * decode
    *------------------
-   * @param {string} expr 表达式字符串 
+   * @param {string} expr 表达式字符串
    */
   decode: function(expr) {
     var
