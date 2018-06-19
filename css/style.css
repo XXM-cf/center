@@ -1,0 +1,207 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+@font-face {
+  font-family: "iconfont";
+  src: url('../fonts/iconfont.eot');
+  src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/iconfont.woff') format('woff'),
+  url('../fonts/iconfont.ttf') format('truetype'),
+  url('../fonts/iconfont.svg#iconfont') format('svg');
+}
+
+.block-first{
+  text-align: center;
+}
+.block-first i {
+  font-size: 1rem;
+}
+.block{
+  color:#fff;
+}
+.block-first span{
+  display: block;
+  font-size: .15rem;
+}
+
+.block-second{
+  height:1.6rem;
+  overflow: hidden;
+  position: relative;
+}
+.item{
+  margin-top: .19rem;
+}
+.item-content{
+  display: inline-block;
+  height: .29rem;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: .15rem;
+  line-height: .29rem;
+  padding-right: 0.1rem;
+}
+.item-content > .label {
+  width: .29rem;
+  float: left;
+  height: 100%;
+  text-align: center;
+  margin-right: .1rem;
+}
+.label > div{
+  width:.05rem;
+  height: calc(100% - .12rem);
+  position: relative;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  border:calc(.065rem + 1px) solid #fff;
+  border-left-width: .12rem;
+  border-right-width: .12rem;
+}
+.lasttimer .label{
+  background: #fff;
+  height:.28rem;
+  width:.29rem;
+  margin-right:.1rem;
+}
+.label i{
+  color:#f26738;
+  font-size: .18rem;
+}
+.label > div > span {
+    position: absolute;
+    top: 0;
+    left: -.025rem;
+    display: block;
+    width: .1rem;
+    height: .05rem;
+    background: #F26738;
+    transition: top .5s;
+    -moz-transition: top .5s;
+    -webkit-transition: top .5s;
+    -o-transition: top .5s;
+}
+.label > div > span.off {
+  top:.1rem;
+  background: #b4b4b4;
+}
+
+.page {
+    width:100%;
+    display: none;
+    text-align: center;
+    padding-bottom: .65rem;
+}
+#page1 {
+    display: block;
+}
+.hekr-header-content{
+  position: relative;
+}
+#warn{
+  position: absolute;
+  bottom: 0;
+  width:100%;
+}
+#warn > div{
+  background: rgba(0,0,0,.7);
+}
+#warn .hekr-slide-item{
+  padding-left: .1rem;
+  color:#fe5249;
+  width:100%;
+  height:.21rem;
+  font-size: .12rem;
+  line-height: .21rem;
+}
+#warn i{
+  font-size: .17rem;
+  float: left;
+  margin-right: .05rem;
+}
+.statusShow{
+  color:#fff;
+  font-size: .13rem;
+  padding-left:.4rem;
+}
+.present > div:nth-child(2) {
+  margin-top: .12rem;
+}
+.present i {
+  display: inline-block;
+  width:.1rem;
+  height:.1rem;
+  border-radius: 50%;
+  background: #138581;
+  margin-right: .08rem;
+}
+.temperature i{
+  background: #f29876;
+}
+.present span{
+  font-size: .2rem;
+}
+.control{
+  margin-top: .16rem;
+}
+.hekr-btn-master.hekr-btn-smaller {
+    width: .8rem;
+    height: .8rem;
+    padding: .06rem;
+}
+.hekr-btn-master.hekr-btn-smaller>.hekr-btn{
+  line-height: .66rem;
+}
+.hekr-btn.hekr-btn-smaller {
+    width: .45rem;
+    height: .45rem;
+    line-height: .45rem;
+    font-size: .28rem;
+}
+.power{
+  margin-top: .15rem;
+}
+.action::after{
+  content: " ";
+  display: block;
+  clear: both;
+}
+.action > div{
+  float: left;
+  width:50%;
+}
+#gears{
+  width: 1.1rem;
+  margin-top: .2rem;
+}
+.action,
+.adjust{
+  margin-top: .4rem;
+}
+.adjust{
+  text-align: left;
+}
+#circle{
+  width:1.22rem;
+  height:1.22rem;
+  display: inline-block;
+  margin-top: .14rem;
+}
+.hekr-slide-item:nth-child(2) .hekr-col-6:nth-child(2){
+  text-align: center;
+}
+.hs2{
+  padding-top:.14rem;
+}
+#gears i.hekr-btn-on{
+  color: #f56735;
+}
+.strainer{
+  margin:.08rem 0;
+}

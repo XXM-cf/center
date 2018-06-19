@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>湿腾中央除湿机</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="flexible" content="initial-dpr=2,maximum-dpr=3" />
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplicationt-tap-highlight" content="no">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="css/hekrui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="hekr-header">
+    <div class="hekr-header-title">
+        <a class="hekr-header-back" href="javascript:;">
+            <i class="hekr-iconfont">&#xe717;</i>
+        </a>
+        <span>除湿机</span>
+    </div>
+    <div class="hekr-header-content">
+        <div class="hekr-slide" id="slide-back">
+            <div class="hekr-slide-viewport">
+                <div class="hekr-slide-scroller">
+                    <div class="hekr-slide-item">
+                        <div class="hekr-row">
+                            <div class="hekr-col-6">
+                                <div class="block block-first">
+                                    <i class="hekr-iconfont">&#xe65a;</i>
+                                    <span>中央除湿机</span>
+                                </div>
+                            </div>
+                            <div class="hekr-col-6">
+                                <div class="block block-second">
+                                    <ul>
+                                        <li class="item item-first">
+                                            <div class="item-content">
+                                                <div class="label">
+                                                    <div><span class="off"></span></div>
+                                                </div>
+                                                <span class="item-text">已关</span>
+                                            </div>
+                                        </li>
+                                        <li class="item lasttimer">
+                                            <div class="item-content">
+                                                <div class="label">
+                                                    <i class="hekr-iconfont">&#xe629;</i>
+                                                </div>
+                                                <span class="item-text">无待执行任务</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hekr-slide-item hs2">
+                        <div class="hekr-row">
+                            <div class="hekr-col-6 statusShow">
+                                <div class="present">
+                                    <div class="humidity">
+                                        <i></i>当前湿度：
+                                        <span>--</span>
+                                    </div>
+                                    <div class="temperature">
+                                        <i></i>当前温度：
+                                        <span>--</span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <div class="coiler">
+                                        盘管温度：<span>--</span>
+                                    </div>
+                                    <div class="strainer">
+                                        滤网使用量：<span>--</span>
+                                    </div>
+                                    <div class="cleansing">
+                                        净化状态：<span>--</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hekr-col-6">
+                                <div class="block block-second" id="circle"></div>
+                               <!--  <canvas>当前设备不支持canvas</canvas> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hekr-slide-nav">
+                <span class="hekr-slide-nav-item hekr-slide-nav-item-active"></span>
+                <span class="hekr-slide-nav-item"></span>
+            </div>
+        </div>
+        <div id="warn">
+            <div class="hekr-slide">
+                <div class="hekr-slide-viewport">
+                    <div class="hekr-slide-scroller">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="page" id="page1">
+    <div class="power">
+        <a class="hekr-btn-master hekr-btn-smaller" href="javascript:;" id="power">
+        <span class="hekr-btn">
+        <i class="hekr-iconfont">&#xe718;</i>
+        </span>
+        </a>
+    </div>
+    <div class="action">
+        <div class="hekr-btn-group">
+            <a class="hekr-btn hekr-btn-smaller" id="anion" href="javascript:;">
+                <i class="hekr-iconfont">&#xe875;</i>
+            </a>
+            <b class="hekr-btn-label">滤网清洗</b>
+        </div>
+        <div id="gears"></div>
+    </div>
+    <div class="adjust">
+        <div class="hekr-range-group">
+            <h3 class="hekr-range-group-title">湿度设定</h3>
+            <input type="range" id="range1" class="range1">
+            <div class="hekr-range-group-sub">
+                <span class="hekr-float-left">10%</span>
+                <span class="hekr-float-right">95%</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page" id="page2"></div>
+
+<nav class="hekr-nav hekr-row">
+    <a href="javascript:;" class="hekr-col-6 active">
+        <i class="hekr-iconfont">&#xe670;</i>
+        <span>功能</span>
+    </a>
+    <a href="javascript:;" class="hekr-col-6">
+        <i class="hekr-iconfont">&#xe60c;</i>
+        <span>预约</span>
+    </a>
+</nav>
+
+<script type="text/javascript" src="js/libs/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugin/major/UARTDATA2.js"></script>
+<!-- <script type="text/javascript" src="js/plugin/major/reconnecting-websocket.min.js"></script> -->
+<script type="text/javascript" src="js/plugin/hekrui/hekrui.min.js"></script>
+<script type="text/javascript" src="js/plugin/hekrui/circle.js"></script>
+<!--压缩js文件，上传提交用-->
+<!-- <script src="js/compress/main.min.js"></script> -->
+<script src="js/main.js"></script>
+<!-- <script type="text/javascript" src="js/plugin/major/tt.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "account": {
+    "username": "13588745281",
+    "password": "19950223asd",
+    "description": "我的设备"
+  },
+  "query": {
+    "devTid": "01_3f9c889e31e769bff8defe274da0a",
+    "ctrlKey": "2393a75938da4fde8bab19405270b37f",
+    "ppk": "k0wfHypbzGlO9b0JBAvxc3CgKzDSurKxaDLbwRv7xpIrZB4eS4+ykCqQfif9zwcN6m"
+  },
+  "accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NjQxOTc2MzcxMSIsInBpZCI6IjAwMDAwMDAwMDAwIiwiZW50IjoiMDEzODI0ODQxNjgiLCJ0eXBlIjoiV0VCIiwiZXhwIjoxNTI4MTcwNTEwLCJqdGkiOiJkY2YyNTA4NS04ODRmLTQ1M2QtYjAwZi0xNmExMTA0N2Q5ODciLCJyb2xlcyI6WyJlbnRlcnByaXNlIl19.emqTJdf5J9QcxrwPYEqCEMiN7FRcQDYFzHzEQVwd5w_eKtK5nphBAxmVqxtEbhFW1sqZcdGnO5wpGZSkQyMqxA=="
+}
